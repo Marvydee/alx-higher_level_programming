@@ -1,6 +1,6 @@
 #!/usr/bin/node
 const arg = process.argv[2];
-if (typeof arg === 'undefinded') {
+if (!arg) {
   console.log('No argument');
 } else {
   console.log(arg);
