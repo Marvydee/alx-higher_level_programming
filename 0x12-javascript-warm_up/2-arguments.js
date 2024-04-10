@@ -1,15 +1,15 @@
 #!/usr/bin/node
-const numArgs = arguments.length;
+const numArgs = process.argv.length - 2;
 
-switch(numArgs)
+if (numArgs === 0)
 {
-	case 0:
-		console.log('No argument');
-		break;
-	case 1:
-		console.log('Argument found');
-		break;
-	default:
-		console.log('Arguments found');
-		break;
+	console.log("No argument");
+}
+else if (numArgs === 1)
+{
+	console.log("Argument found");
+}
+else
+{
+	console.log("Arguments found");
 }
