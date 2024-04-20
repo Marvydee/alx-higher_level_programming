@@ -1,23 +1,22 @@
 #!/usr/bin/python3
-"""Module that retrieves and prints all\
-        states from a MySQL database using SQLAlchemy."""
-import sys
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from model_state import State
+# Defines a City model.
+# Inherits from SQLAlchemy Base and links to the MySQL table cities.
 
-if __name__ == "__main__":
-    # Create the SQLAlchemy engine using the provided MySQL credentials
-    engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
-                           .format(sys.argv[1], sys.argv[2], sys.argv[3]),
-                           pool_pre_ping=True)
-    # Create a session factory
-    Session = sessionmaker(bind=engine)
+from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 
-    # Create a session object
-    session = Session()
+Base = declarative_base()
 
-    # Retrieve all states from the database and print their IDs and names
-    for state in session.query(State).order_by(State.id):
-        print("{}: {}".format(state.id, state.name))
 
+class City(Base):
+    """Represents a city for a MySQL database.
+
+    Attributes:
+        id (str): The city's id.
+        name (sqlalchemy.Integer): The city's name.
+        state_id (sqlalchemy.String): The city's state id.
+    """
+    __tablename__ = "cities"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(128), nullable=False)
+    state_id = Column(Integer, ForeignKey("states.id"), nullable=False)
