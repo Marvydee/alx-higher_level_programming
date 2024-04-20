@@ -3,12 +3,13 @@
 import sys
 import MySQLdb
 
+
 def list_states(username, password, database):
-    """lists all states from the database hbtn_0e_0_usa.
+    """Lists all states from the database hbtn_0e_0_usa.
     Args:
-        username: mysql username
-        password: mysql password
-        database: mysql database
+        username: MySQL username
+        password: MySQL password
+        database: MySQL database
     """
     # Connect to the MySQL server
     db = MySQLdb.connect(
@@ -33,9 +34,9 @@ def list_states(username, password, database):
     # Close the database connection
     db.close()
 
+
 # Example usage
 if __name__ == '__main__':
-
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
